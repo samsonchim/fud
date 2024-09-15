@@ -130,7 +130,7 @@
                     if (response.success) {
                         document.getElementById('username').textContent = response.username;
                     } else {
-                        document.getElementById('username').textContent = 'Guest';
+                        window.location.href = 'login.html';
                     }
                 } else {
                     console.error('Error fetching username:', xhr.statusText);
@@ -145,6 +145,7 @@
         }
         
         window.onload = fetchUsername;
-        </script>
+    </script>
+    
 </body>
 </html>
