@@ -121,36 +121,39 @@
     <script src="timeTable.js"></script>
     <script src="app.js"></script>
     <script>
-        function fetchUsername() {
-            const xhr = new XMLHttpRequest();
-            xhr.open("GET", "https://spurz.com.ng/fud/get_username.php", true);
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    try {
-                        const response = JSON.parse(xhr.responseText);
-                        if (response.success) {
-                            document.getElementById('username').textContent = response.username;
-                        } else {
-                            // If user is not logged in, redirect to login.html
-                            window.location.href = 'login.html';
-                        }
-                    } catch (e) {
-                        console.error('Error parsing JSON:', e);
-                        console.error('Response text:', xhr.responseText);
-                    }
+      function fetchUsername() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://spurz.com.ng/fud/get_username.php", true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            try {
+                const response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    // Display username if the response is successful
+                    document.getElementById('username').textContent = response.username;
                 } else {
-                    console.error('Error fetching username:', xhr.statusText);
+                    // If user is not logged in, redirect to login.html
+                    window.location.href = 'login.html';
                 }
-            };
-            
-            xhr.onerror = function () {
-                console.error('Network error occurred while fetching username');
-            };
-        
-            xhr.send();
+            } catch (e) {
+                console.error('Error parsing JSON:', e);
+                console.error('Response text:', xhr.responseText);
+            }
+        } else {
+            console.error('Error fetching username:', xhr.statusText);
         }
-        
-        window.onload = fetchUsername;
+    };
+    
+    xhr.onerror = function () {
+        console.error('Network error occurred while fetching username');
+    };
+
+    xhr.send();
+}
+
+// Execute the function when the page loads
+window.onload = fetchUsername;
+
     </script>
     
 </body>
