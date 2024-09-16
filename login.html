@@ -174,7 +174,7 @@
             <input type="password" id="password" name="password">
         </div>
         <div class="button">
-            <button type="submit" id="signup-btn" class="btn">Create Account</button>
+            <button type="submit" id="signup-btn" class="btn">Login</button>
         </div>
         <p style="font-size: 13px; text-align: center;">Not a Member? <a href="index.html">Signup</a></p>
     </form>    
@@ -208,7 +208,7 @@
         if (xhr.status === 200) {
             const response = JSON.parse(xhr.responseText);
             if (response.success) {
-                window.location.href = 'index.html';
+                window.location.href = 'dashboard.html';
             } else {
                 errorMessage.textContent = response.message;
                 errorMessage.style.color = 'red';
