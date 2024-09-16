@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="shortcut icon" href="logo.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo" title="University Management System">
+            <img src="logo.png" alt="">
+            <h2>F<span class="danger">U</span>D</h2>
+        </div>
+        <div class="navbar">
+            <a href="index.html" class="active">
+                <span class="material-icons-sharp">home</span>
+                <h3>Home</h3>
+            </a>
+            <a href="assignments.html" onclick="timeTableAll()">
+                <span class="material-icons-sharp">assignments</span>
+                <h3>Assignments</h3>
+            </a> 
+            <a href="assesments.html">
+                <span class="material-icons-sharp">grid_view</span>
+                <h3>Assements</h3>
+            </a>
+           
+            <a href="login.html">
+                <span class="material-icons-sharp" onclick="">logout</span>
+                <h3>Logout</h3>
+            </a>
+        </div>
+        <div id="profile-btn">
+            <span class="material-icons-sharp">person</span>
+        </div>
+        <div class="theme-toggler">
+            <span class="material-icons-sharp active">light_mode</span>
+            <span class="material-icons-sharp">dark_mode</span>
+        </div>
+        
+    </header>
+    <div class="container">
+        <aside>
+            <div class="profile">
+                <div class="top">
+                    <div class="info">
+                        <p>Hey, <b id="username">Trying to remember your username...</b></p>
+                        <!-- <small class="text-muted">12115153</small> -->
+                    </div>
+                </div>
+                <div class="about">
+                    
+                    <h5><a href="https://chat.whatsapp.com/EvIuVgZsiTkFGnWkG3YgFH">Click to Join the WhatsApp Group Chat</a></h5>
+                    <!--
+                    <h5>Send Us an Email.</h5>
+                    <p>fiercesamsonchi@gmail.com</p>-->
+                  
+                </div>
+            </div>
+        </aside>
+
+        <main>
+                <div class="timetable" >
+                <div>
+                    <span >&lt;</span>
+                    <h2>This week's Timetable</h2>
+                    <span id="nextDay">&gt;</span>
+                </div>
+               
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Room ID</th>
+                            <th>Topic</th>
+                            <th></th>
+                           
+                        </tr>
+                        <tr>
+                            <th>9pm WAT</th>
+                            <th>8000QAS</th>
+                            <th>Introduction to Web Devlopment</th>
+                            <th></th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <br>
+            <div class="video-container">
+                <iframe width="660" height="315" src="https://www.youtube.com/embed/eOe0HnkbGF0?si=9pD2MpQVoEcDu8OM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            
+                  </main>
+
+        <div class="right">
+            <div class="announcements">
+                <h2>Announcements</h2>
+                <div class="updates">
+                    <div class="message">
+                        <p> <b>Welcome aboard Pal!</b>
+                            By becoming a part of our community, you've selected a journey that you'll never rue. Congratulations on your decision.</p>
+                        <small class="text-muted">Today</small>
+                    </div>
+                    <div class="message">
+                        <p> <b>Do not hoard this chance</b> Instead, consider spreading the word so that others can sign up and become members of this fantastic community.</p>
+                        <small class="text-muted">Today</small>
+                    </div>
+                    <div class="message">
+                        <p> <b>Learning</b> Learning commences on the 11th of March, 2024. Don't snooze or you will miss.</p>
+                        <small class="text-muted">Today</small>
+                    </div>
+                </div>
+            </div>
+
+    <script src="timeTable.js"></script>
+    <script src="app.js"></script>
+    <script>
+      function fetchUsername() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://spurz.com.ng/fud/get_username.php", true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            try {
+                const response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    // Display username if the response is successful
+                    document.getElementById('username').textContent = response.username;
+                } else {
+                    // If user is not logged in, redirect to login.html (Will Resolve Later)
+                    //window.location.href = 'login.html';
+                }
+            } catch (e) {
+                console.error('Error parsing JSON:', e);
+                console.error('Response text:', xhr.responseText);
+            }
+        } else {
+            console.error('Error fetching username:', xhr.statusText);
+        }
+    };
+    
+    xhr.onerror = function () {
+        console.error('Network error occurred while fetching username');
+    };
+
+    xhr.send();
+}
+
+// Execute the function when the page loads
+window.onload = fetchUsername;
+
+    </script>
+    
+</body>
+</html>
